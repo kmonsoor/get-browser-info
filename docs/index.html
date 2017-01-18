@@ -51,6 +51,11 @@
     <h2 id='time'></h4>
     <hr/>
 
+    <h4>Public IP</h4>
+    <h2 id='ip'></h4>
+    <hr/>
+
+
     <!-- <h3>Initiative by: <a href="https://kmonsoor.com">Khaled Monsoor</a></h3> -->
 
     <script>
@@ -64,9 +69,15 @@
               $('#os-name').text(osInfo[0]);
               $('#os-version').text(osInfo[1]);
 
+              console.log('fetching Timezone information ...');
               $.getScript( "https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.6/jstz.min.js" )
                 .done(function() {
                   $('#time').text(timeNow() + '  ('+jstz.determine().name() +')');
+              });
+
+              console.log('fetching IP information ... please wait');
+              $.getJSON('https://freegeoip.net/json/?callback=?', function(data) {
+                 $('#ip').text(data['ip'] + '  (' + data['country_name'] + ')');
               });
           });
 
