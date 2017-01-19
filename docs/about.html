@@ -11,9 +11,6 @@
     <title>Your Browser Info. Fast.</title>
     <meta name="description" content="Your Browser Info. Fast.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-
     <link rel="canonical" href="https://browser.ml/">
     <meta name="author" content="Khaled Monsoor">
     <link rel="image_src" href="https://browser.ml/favicon.ico">
@@ -37,58 +34,21 @@
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-    <h4 class="title">Your Browser</h4>
-    <h2 id='name'></h2>
-    <h2 id='version'></h2>
+
+    <p>Brought to you by: <a href="https://kmonsoor.com">Khaled Monsoor (kmonsoor)</a><p>
+    <p>Source code: <a href="https://github.com/kmonsoor/get-browser-info">kmonsoor/get-browser-info</a></p>
+    <p>OS-detection code by: <a href="https://stackoverflow.com/a/18706818/617185">Christian Ludwig</a><p>
+    <p>Browser-detection code: <a href="http://www.javascripter.net/faq/browsern.htm">http://www.javascripter.net</a><p>
+    <p>Timezone-detection code: <a href="https://bitbucket.org/pellepim/jstimezonedetect/">Jon Nylander (pellepim)</a><p>
     <hr/>
-
-    <h4>Operating system</h4>
-    <h2 id='os-name'></h2>
-    <h2 id='os-version'></h2>
-    <hr/>
-
-    <h4>System Time</h4>
-    <h2 id='time'></h4>
-    <hr/>
-
-    <h4>Public IP</h4>
-    <h2 id='ip'></h4>
-    <hr/>
-
-    <footer align="right"><a href="/about.html">About</a></footer>
-
-    <!-- <h3>Initiative by: <a href="https://kmonsoor.com">Khaled Monsoor</a></h3> -->
+    <footer align="right">&copy; Copyright 2017 - Khaled Monsoor</footer>
 
     <script>
-    $( document ).ready(function() {
-        $.getScript("js/main.min.js")
-          .done(function () {
-              var browserInfo = getBrowser();
-              var osInfo = getOS();
-              $('#name').text(browserInfo[0]);
-              $('#version').text(browserInfo[1]);
-              $('#os-name').text(osInfo[0]);
-              $('#os-version').text(osInfo[1]);
-
-              console.log('fetching Timezone information ...');
-              $.getScript( "https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.6/jstz.min.js" )
-                .done(function() {
-                  $('#time').text(timeNow() + '  ('+jstz.determine().name() +')');
-              });
-
-              console.log('fetching IP information ... please wait');
-              $.getJSON('https://freegeoip.net/json/?callback=?', function(data) {
-                 $('#ip').text(data['ip'] + '  (' + data['country_name'] + ')');
-              });
-          });
-
-
        (function(i, s, o, g, r, a, m) {
            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() {(i[r].q = i[r].q || []).push(arguments)}, i[r].l = 1 * new Date();
            a = s.createElement(o), m = s.getElementsByTagName(o)[0];a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
        ga('create', 'UA-90237732-3', 'auto'); ga('send', 'pageview');
-    });
     </script>
 </body>
 </html>
