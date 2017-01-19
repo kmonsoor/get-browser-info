@@ -31,28 +31,46 @@
     <meta name="twitter:card" content="See your browser's general information very quickly ...">
     <link rel="icon" href="https://browser.ml/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="https://browser.ml/favicon.ico" type="image/x-icon">
+    <style>
+        h4 {
+            color: #646464;
+        }
+
+        h2 {
+            color: black;
+        }
+
+        h3 {
+            color: #474747;
+        }
+
+        a {
+            color: #5b74fe;
+            font-weight: bolder;
+        }
+    </style>
 </head>
 
-<body>
+<body style="background-color: #e4e4e4;">
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
     <h4 class="title">Your Browser</h4>
     <h2 id='name'></h2>
-    <h2 id='version'></h2>
+    <h3 id='version'></h3>
     <hr/>
 
     <h4>Operating system</h4>
     <h2 id='os-name'></h2>
-    <h2 id='os-version'></h2>
+    <h3 id='os-version'></h3>
     <hr/>
 
     <h4>System Time</h4>
-    <h2 id='time'></h4>
+    <h2 id='time'></h2>
     <hr/>
 
     <h4>Public IP</h4>
-    <h2 id='ip'></h4>
+    <h2 id='ip'></h2>
     <hr/>
 
     <footer align="right"><a href="/about.html">About</a></footer>
@@ -60,35 +78,44 @@
     <!-- <h3>Initiative by: <a href="https://kmonsoor.com">Khaled Monsoor</a></h3> -->
 
     <script>
-    $( document ).ready(function() {
-        $.getScript("js/main.min.js")
-          .done(function () {
-              var browserInfo = getBrowser();
-              var osInfo = getOS();
-              $('#name').text(browserInfo[0]);
-              $('#version').text(browserInfo[1]);
-              $('#os-name').text(osInfo[0]);
-              $('#os-version').text(osInfo[1]);
-
-              console.log('fetching Timezone information ...');
-              $.getScript( "https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.6/jstz.min.js" )
+        $(document).ready(function() {
+            console.log('I always like curious minds like me ... ;)');
+            $.getScript("js/main.min.js")
                 .done(function() {
-                  $('#time').text(timeNow() + '  ('+jstz.determine().name() +')');
-              });
+                    var browserInfo = getBrowser();
+                    var osInfo = getOS();
+                    $('#name').text(browserInfo[0]);
+                    $('#version').text(browserInfo[1]);
+                    $('#os-name').text(osInfo[0]);
+                    $('#os-version').text(osInfo[1]);
 
-              console.log('fetching IP information ... please wait');
-              $.getJSON('https://freegeoip.net/json/?callback=?', function(data) {
-                 $('#ip').text(data['ip'] + '  (' + data['country_name'] + ')');
-              });
-          });
+                    console.log('fetching Timezone information ...');
+                    $.getScript("https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.6/jstz.min.js")
+                        .done(function() {
+                            $('#time').text(timeNow() + '  (' + jstz.determine().name() + ')');
+                        });
+
+                    console.log('fetching IP information ... please wait');
+                    $.getJSON('https://freegeoip.net/json/?callback=?', function(data) {
+                        $('#ip').text(data['ip'] + '  (' + data['country_name'] + ')');
+                    });
+                });
 
 
-       (function(i, s, o, g, r, a, m) {
-           i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() {(i[r].q = i[r].q || []).push(arguments)}, i[r].l = 1 * new Date();
-           a = s.createElement(o), m = s.getElementsByTagName(o)[0];a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-       })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-       ga('create', 'UA-90237732-3', 'auto'); ga('send', 'pageview');
-    });
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function() {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-90237732-3', 'auto');
+            ga('send', 'pageview');
+        });
     </script>
 </body>
+
 </html>

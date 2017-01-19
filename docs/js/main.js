@@ -4,6 +4,7 @@ function getBrowser() {
   var browserName = navigator.appName;
   var fullVersion = '' + parseFloat(navigator.appVersion);
   var majorVersion = parseInt(navigator.appVersion, 10);
+  var vendor = navigator.vendor;
   var nameOffset, verOffset, ix;
 
   // In Opera, the true version is after "Opera" or after "Version"
@@ -55,6 +56,8 @@ function getBrowser() {
     fullVersion = '' + parseFloat(navigator.appVersion);
     majorVersion = parseInt(navigator.appVersion, 10);
   }
+  if (vendor.length)
+      browserName = browserName + '  (' + vendor + ')';
   return [browserName, fullVersion];
 }
 
